@@ -1,1 +1,0 @@
-real_time,timestamp_s,seq,rel_pitch_deg,rel_roll_deg,avg_pitch_deg,avg_roll_deg,accel_x_1,accel_y_1,accel_z_1,gyro_x_1,gyro_y_1,gyro_z_1,accel_x_2,accel_y_2,accel_z_2,gyro_x_2,gyro_y_2,gyro_z_2,q1w,q1x,q1y,q1z,q2w,q2x,q2y,q2z,temp1_C,temp2_C,madgwick_beta1,madgwick_beta2
