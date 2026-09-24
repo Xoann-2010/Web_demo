@@ -1,0 +1,6 @@
+flask>=3.0.0
+flask-socketio>=5.3.0
+simple-websocket>=1.0.0
+bleak>=0.21.0
+numpy>=1.24.0
+pandas>=2.0.0
