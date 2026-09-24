@@ -1,0 +1,214 @@
+/*
+  medical_theme.css — Bộ nhận diện giao diện Y Tế chuẩn Giao_Dien_Template
+*/
+
+:root {
+  --color-medical-bg: #f4f7f6;
+  --color-medical-panel: #ffffff;
+  --color-medical-border: #e2e8f0;
+  --color-text-main: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-primary: #0ea5e9;
+  --color-primary-dark: #0284c7;
+  --color-primary-tint: #e0f2fe;
+  --color-success: #10b981;
+  --color-success-tint: #ecfdf5;
+  --color-danger: #ef4444;
+  --color-danger-tint: #fef2f2;
+  --color-warning: #f59e0b;
+  --color-warning-tint: #fffbeb;
+  --color-accent: #8b5cf6;
+  --color-accent-tint: #f5f3ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-medical-bg);
+  color: var(--color-text-main);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+}
+
+.glass-panel {
+  background-color: var(--color-medical-panel);
+  border: 1px solid var(--color-medical-border);
+  border-radius: 0.85rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.glass-panel:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
+
+/* Tab Navigation */
+.tab-btn {
+  position: relative;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tab-btn:hover {
+  color: var(--color-primary);
+  background-color: rgba(14, 165, 233, 0.06);
+}
+
+.tab-btn.active {
+  color: var(--color-primary);
+  font-weight: 700;
+  background-color: var(--color-primary-tint);
+}
+
+/* Trạng thái hệ thống (Status Banner) */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.status-pill.idle {
+  background-color: #f1f5f9;
+  color: #475569;
+  border-color: #cbd5e1;
+}
+
+.status-pill.connecting {
+  background-color: var(--color-primary-tint);
+  color: var(--color-primary-dark);
+  border-color: #bae6fd;
+}
+
+.status-pill.calibrating {
+  background-color: var(--color-warning-tint);
+  color: #b45309;
+  border-color: #fde68a;
+  animation: pulse-warn 1.5s infinite;
+}
+
+.status-pill.measuring {
+  background-color: var(--color-success-tint);
+  color: #047857;
+  border-color: #a7f3d0;
+}
+
+.status-pill.error {
+  background-color: var(--color-danger-tint);
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+@keyframes pulse-warn {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Live Biomechanical Card Indicators */
+.metric-card {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border-left-width: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.metric-card.pitch-card {
+  background-color: #f0f9ff;
+  border-left-color: var(--color-primary);
+}
+
+.metric-card.roll-card {
+  background-color: #fdf4ff;
+  border-left-color: var(--color-accent);
+}
+
+.metric-card.flexion-card {
+  background-color: #ecfdf5;
+  border-left-color: var(--color-success);
+}
+
+.metric-card.extension-card {
+  background-color: #fffbeb;
+  border-left-color: var(--color-warning);
+}
+
+.metric-card.danger-card {
+  background-color: #fef2f2;
+  border-left-color: var(--color-danger);
+}
+
+/* Biomechanical Head Angle Gauges */
+.gauge-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid var(--color-medical-border);
+  border-radius: 0.85rem;
+  padding: 1.25rem;
+}
+
+/* Animations */
+.animate-ping-slow {
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* In ấn A4 (Print Styles) */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  header, nav, .no-print, button {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .glass-panel {
+    box-shadow: none !important;
+    border: 1px solid #cccccc !important;
+  }
+}

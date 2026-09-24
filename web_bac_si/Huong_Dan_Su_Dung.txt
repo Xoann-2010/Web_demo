@@ -1,0 +1,83 @@
+════════════════════════════════════════════════════════════════════════
+             HƯỚNG DẪN SỬ DỤNG - HỆ THỐNG ĐO GÓC CỔ LÂM SÀNG
+       Phần mềm Đánh giá Biên độ Vận động Đốt sống Cổ (CROM) cho Bác sĩ
+════════════════════════════════════════════════════════════════════════
+
+1. CÁCH MỞ VÀ VẬN HÀNH PHẦN MỀM
+────────────────────────────────────────────────────────────────────────
+   - Nhấp đúp chuột vào file: "Mo_Phan_Mem.bat"
+   - Trình duyệt web (Google Chrome / Microsoft Edge) sẽ tự động mở tại:
+     http://localhost:5000
+   - Không cần cài thêm bất kỳ máy chủ phức tạp nào khác.
+
+
+2. VỊ TRÍ GẮN 2 CẢM BIẾN MPU6050 TRÊN BỆNH NHÂN
+────────────────────────────────────────────────────────────────────────
+   Hệ thống sử dụng phương pháp đo tương đối (Relative Orientation)
+   loại bỏ chuyển động rung lắc thân mình:
+   - CẢM BIẾN 1 (Gốc tham chiếu): Gắn cố định tại vị trí mỏm gai đốt sống
+     ngực T1 - T3 (giữa hai xương bả vai).
+   - CẢM BIẾN 2 (Đo đầu): Gắn trên đỉnh đầu / chỏm đầu (Vertex) bằng đai
+     đội đầu y tế co giãn nhẹ.
+
+
+3. QUY TRÌNH THĂM KHÁM LÂM SÀNG 5 BƯỚC
+────────────────────────────────────────────────────────────────────────
+   Bước 1: Chọn bệnh nhân từ danh sách thả xuống (hoặc bấm "+ Thêm BN").
+   Bước 2: Chọn Chế độ:
+           - "Cảm biến thật (BLE MPU6050_HEAD)" nếu đang bật phần cứng.
+           - "Giả lập Lâm Sàng (Demo)" nếu muốn hội chẩn hoặc chạy thử.
+   Bước 3: Nhấn nút [▶ BẮT ĐẦU ĐO]:
+           - Hệ thống kết nối và đếm ngược 3 giây hiệu chuẩn.
+           - Bác sĩ nhắc bệnh nhân: "Giữ đầu thẳng tự nhiên, nhìn về phía trước".
+   Bước 4: Hướng dẫn bệnh nhân thực hiện các động tác vận động cổ:
+           - Cúi đầu tối đa (Cervical Flexion)
+           - Ngửa đầu tối đa (Cervical Extension)
+           - Nghiêng đầu sang trái và sang phải (Lateral Bending)
+           * Nếu bệnh nhân kêu đau, bác sĩ nhấn nút [⚠ ĐÁNH DẤU ĐIỂM ĐAU]
+             để lưu mốc góc và thời gian đau vào hồ sơ.
+   Bước 5: Nhấn [■ DỪNG & LƯU PHIÊN]:
+           - Toàn bộ dữ liệu 50Hz tự động lưu vào file CSV chuẩn.
+           - Hồ sơ phiên đo, biên độ tối đa (ROM) tự động cập nhật vào cơ sở dữ liệu.
+
+
+4. TÍNH NĂNG "CÂN BẰNG 0° (TARE)"
+────────────────────────────────────────────────────────────────────────
+   Trong lúc đang đo, nếu bệnh nhân thay đổi tư thế ngồi hoặc cần đặt
+   lại góc 0° tại vị trí hiện tại, bác sĩ chỉ cần bấm nút [⚖ Cân bằng 0° (Tare)].
+   Góc Pitch và Roll sẽ ngay lập tức được quy về 0.0° mà không cần kết nối lại.
+
+
+5. XEM LỊCH SỬ & IN PHIẾU KHÁM BỆNH (A4)
+────────────────────────────────────────────────────────────────────────
+   - Chuyển sang thẻ "Lịch Sử & Báo Cáo".
+   - Chọn tên bệnh nhân ở cột trái -> chọn phiên đo ở cột giữa.
+   - Bác sĩ xem đồ thị toàn phiên đo, nhập nhận xét lâm sàng và bấm "Lưu".
+   - Bấm nút [In Phiếu Khám (A4)]: Trình duyệt sẽ mở phiếu khám chuẩn
+     y tế có đầy đủ bảng kết quả ROM, chữ ký bác sĩ và nút in/lưu PDF.
+   - Bấm nút [Tải File CSV Gốc]: Tải tệp dữ liệu chi tiết tương thích
+     100% với file CSV của head_angle_monitor_ble.
+
+
+6. SAO LƯU DỮ LIỆU (BACKUP)
+────────────────────────────────────────────────────────────────────────
+   Để sao lưu dữ liệu toàn bộ bệnh nhân phòng khám sang USB:
+   - Tắt phần mềm (đóng cửa sổ màn hình đen).
+   - Copy 2 thành phần quan trọng:
+     1. File: "database.db" (chứa danh sách bệnh nhân và thông tin khám)
+     2. Thư mục: "recordings/" (chứa toàn bộ file đo CSV gốc)
+
+
+7. XỬ LÝ SỰ CỐ THƯỜNG GẶP
+────────────────────────────────────────────────────────────────────────
+   Sự cố: "Không tìm thấy thiết bị BLE 'MPU6050_HEAD'"
+   Khắc phục:
+   - Kiểm tra ESP32 đã cắm nguồn và đèn LED nguồn sáng chưa.
+   - Kiểm tra Bluetooth trên máy tính Windows đã BẬT chưa.
+   - Bác sĩ có thể chuyển sang "Chế độ Giả Lập (Demo)" để tiếp tục sử dụng.
+
+   Sự cố: Trình duyệt không tự động mở
+   Khắc phục:
+   - Mở thủ công Chrome / Edge, nhập vào thanh địa chỉ:
+     http://localhost:5000 rồi nhấn Enter.
+════════════════════════════════════════════════════════════════════════
